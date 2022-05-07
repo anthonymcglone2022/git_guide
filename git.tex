@@ -1,0 +1,82 @@
+%==========================TOC tips by Chas====================================
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{lipsum}
+\usepackage{times}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\renewcommand{\contentsname}{Table of Contents}
+
+\usepackage{titletoc}
+
+%\titlecontents{section}[left]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[below-code]
+\newcommand{\setupname}[1][\chaptername]{
+\titlecontents{chapter}[0pt]{\vspace{1ex}}{\bfseries#1~\thecontentslabel:\quad}{\bfseries}{\bfseries\hfill\contentspage}[]
+}
+
+\author{Anthony McGlone}\title{git - Command Line Guide}
+\begin{document}\maketitle
+
+\tableofcontents
+
+\setupname
+\chapter{Introduction}
+\section{What is git?}
+git is a repository (or store) which is used to store files. git "versions" the files in the repository, so every time a commit (or save) operation is made, the state of the files in that repository is saved (with a unique ID). This means that you can see the history of the changes in the repository. You can also delete the changes in the repository by going back to a specific commit. Git is mostly used by Software Engineers to store and version code for software releases. It's a powerful tool for collaboration on large projects. This guide will demonstrate how the git command line tool is used to manage a repository.  
+
+\section{Installing git}
+\subsection{MacOS}
+
+1. Install Homebrew (https://brew.sh/) if you don't have it (Check by opening a terminal and running "brew -h")
+\newline
+2. Install git by running "brew install git"
+\newline
+3. Open a terminal and run "git \texttt{--}version" (if git is installed, the version number should be printed to console) 
+
+\subsection{Windows}
+
+1. Install git by downloading the Windows binary from git-scm (https://git-scm.com/) 
+\newline
+2. Open a MS-DOS terminal and run "git \texttt{--}version" (if git is installed, the version number should be printed to console)
+
+
+\subsection{Linux (Ubuntu)}
+
+1. Install git by opening a terminal and running "sudo apt-get install git"
+\newline
+2. Run "git \texttt{--}version" (if git is installed, the version number should be printed to console)
+
+
+\subsection{Linux (Red Hat)}
+
+
+1. Install git by opening a terminal and running "sudo yum install git" 
+\newline
+2. Run "git \texttt{--}version" (if git is installed, the version number should be printed to console)
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
