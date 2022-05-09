@@ -3,6 +3,9 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{lipsum}
 \usepackage{times}
+\usepackage{listings}
+\usepackage{hyperref}
+
 
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
@@ -14,45 +17,74 @@
 \titlecontents{chapter}[0pt]{\vspace{1ex}}{\bfseries#1~\thecontentslabel:\quad}{\bfseries}{\bfseries\hfill\contentspage}[]
 }
 
-\author{Anthony McGlone}\title{git - Command Line Guide}
+\author{Anthony McGlone}\title{Git - Command Line Guide}
 \begin{document}\maketitle
 
 \tableofcontents
 
 \setupname
 \chapter{Introduction}
-\section{What is git?}
-git is a repository (or store) which is used to store files. git "versions" the files in the repository, so every time a commit (or save) operation is made, the state of the files in that repository is saved (with a unique ID). This means that you can see the history of the changes in the repository. You can also delete the changes in the repository by going back to a specific commit. Git is mostly used by Software Engineers to store and version code for software releases. It's a powerful tool for collaboration on large projects. This guide will demonstrate how the git command line tool is used to manage a repository.  
+\section{What is Git?}
 
-\section{Installing git}
+Git is a repository which is used to store files. Git is used by Software Engineers to store and version code for software releases. It's a powerful tool for collaborating on large projects.
+\newline
+\newline
+Git versions the files within its repository, so every time a commit operation is made, the files in the repository are saved - a unique ID is also created and associated with the commit. This means that you can see the history of the changes in the repository. You can also delete the changes in the repository by going back to a specific commit.
+\newline
+\newline
+In this guide you will see how the command line tool \texttt{git} is used to manage this repository.  
+
+\section{Installing Git}
 \subsection{MacOS}
 
-1. Install Homebrew (https://brew.sh/) if you don't have it (Check by opening a terminal and running "brew -h")
+1. Open a terminal. Then install Homebrew (steps located: \href{https://brew.sh/}{here}).
 \newline
-2. Install git by running "brew install git"
+2. Install Git by running \texttt{brew install git}
 \newline
-3. Open a terminal and run "git \texttt{--}version" (if git is installed, the version number should be printed to console) 
+3. Open a terminal and run \texttt{git --version} (if Git is installed, the version number should be printed to console) 
 
 \subsection{Windows}
 
-1. Install git by downloading the Windows binary from git-scm (https://git-scm.com/) 
+1. Install Git by downloading the Windows binary from git-scm (\href{https://git-scm.com/}{here})
 \newline
-2. Open a MS-DOS terminal and run "git \texttt{--}version" (if git is installed, the version number should be printed to console)
+2. Run the installer
+\newline
+3. Open a MS-DOS terminal and run \texttt{git --version} (if Git is installed, the version number should be printed to console)
 
 
 \subsection{Linux (Ubuntu)}
 
-1. Install git by opening a terminal and running "sudo apt-get install git"
+1. Install Git by opening a terminal and running \texttt{sudo apt-get install git}
 \newline
-2. Run "git \texttt{--}version" (if git is installed, the version number should be printed to console)
+2. Run \texttt{git --version} (if Git is installed, the version number should be printed to console)
 
 
 \subsection{Linux (Red Hat)}
 
 
-1. Install git by opening a terminal and running "sudo yum install git" 
+1. Install git by opening a terminal and running \texttt{sudo yum install git} 
 \newline
-2. Run "git \texttt{--}version" (if git is installed, the version number should be printed to console)
+2. Run \texttt{git --version} (if Git is installed, the version number should be printed to console)
+
+
+\chapter{Basic Git command line operations}
+\section{Setting up a local repository}
+First create a folder called \texttt{store}. Then open a terminal and navigate into that folder. Run this command:
+\newline
+\newline
+\centerline{\texttt{git init}}
+\newline
+\newline
+This command creates the repository and also creates a \texttt{.git}  subdirectory. This subdirectory stores information about commits, and the location of your remote repository. This remote repository is stored on a server (hosted on the internet or on a company's internal network). To share your commits with others, you have to push your local commits to the remote repository. We'll see how to do this later.
+\newline
+\newline
+Run the following command to verify that your local repository was set up:
+\newline
+\newline
+\centerline{\texttt{git status}}
+
+
+
 
 
 
