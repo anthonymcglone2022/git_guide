@@ -82,6 +82,44 @@ Run the following command to verify that your local repository was set up:
 \newline
 \newline
 \centerline{\texttt{git status}}
+\newline
+\newline
+You should see the following text in your terminal:
+\newline
+\newline
+\texttt{
+On branch master
+\\
+\\
+No commits yet
+\\
+\\
+nothing to commit (create/copy files and use "git add" to track)
+}
+\newline
+Your repository is now successfully set up. The branch \texttt{master} is the main branch in your local repository. By default, it's the place where your files are stored. You can create other branches (basically copies of \texttt{master}) and work on edits there before saving them back into the \texttt{master} branch. For now, we'll just work with the \texttt{master} branch. We'll cover branching strategies and remote branches (stored in a remote repository) later.
+
+\section{Committing files into the \texttt{store} repository}
+
+First, create a \texttt{code.txt} file in the \texttt{store} folder. Then run \texttt{git status} in your terminal. You should see the following output:
+\newline
+\newline
+\texttt{
+Untracked files:
+\\
+\hspace*{10mm}(use "git add <file>..." to include in what will be committed)
+\\
+\\
+\hspace*{20mm}code.txt
+}
+\newline
+\newline
+The file is untracked, meaning Git doesn't see it yet. If you tried to do a commit operation now, Git wouldn't save the file or version it. Run the add operation below in your terminal to get Git to track the file. 
+\newline
+\newline
+\centerline{\texttt{git add code.txt}}
+\newline
+\newline
 
 
 
