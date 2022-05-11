@@ -75,7 +75,22 @@ First create a folder called \texttt{store}. Then open a terminal and navigate i
 \centerline{\texttt{git init}}
 \newline
 \newline
-This command creates the repository and also creates a \texttt{.git}  subdirectory. This subdirectory stores information about commits, and the location of your remote repository. This remote repository is stored on a server (hosted on the internet or on a company's internal network). To share your commits with others, you have to push your local commits to the remote repository. We'll see how to do this later.
+This command creates the repository and also creates a \texttt{.git}  subdirectory. This subdirectory stores information about commits, and the location of your remote repository. This remote repository is stored on a server (hosted on the internet or on a company's internal network). To share your commits with others, you have to push your local commits to the remote repository. We'll set up the remote repository later.
+\newline
+\newline
+Let's add your username and email to your local repository now. This will be required so your commits can be associated with you. Start with the username. Run the following command (before doing so, add your full name between the quotes in the command below):
+\newline
+\newline
+\centerline{\texttt{git config --global user.name "INSERT NAME HERE"}}
+\newline
+\newline
+Now run the command to set up your email (again, insert your email address between the quotes):
+\newline
+\newline
+\centerline{\texttt{git config --global user.email "INSERT EMAIL HERE"}}
+\newline
+\newline
+Now run the command \texttt{git config --global user.name}. If everything is correct, you should see your username. Run \texttt{git config --global user.email} to see if your email prints out to console.
 \newline
 \newline
 Run the following command to verify that your local repository was set up:
@@ -85,6 +100,7 @@ Run the following command to verify that your local repository was set up:
 \newline
 \newline
 You should see the following text in your terminal:
+\newline
 \newline
 \newline
 \texttt{
@@ -97,7 +113,8 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 }
 \newline
-Your repository is now successfully set up. The branch \texttt{master} is the main branch in your local repository. By default, it's the place where your files are stored. You can create other branches (basically copies of \texttt{master}) and work on edits there before saving them back into the \texttt{master} branch. For now, we'll just work with the \texttt{master} branch. We'll cover branching strategies and remote branches (stored in a remote repository) later.
+That's it! Your local repository is now successfully set up. The branch \texttt{master} is the main branch in your local repository. By default, it's the place where your files are stored. You can create other branches (basically copies of \texttt{master}) and work on edits there before saving them back into the \texttt{master} branch. For now, we'll just work with the \texttt{master} branch. We'll cover branching strategies and remote branches (stored in a remote repository) later.
+
 
 \section{Committing files into the \texttt{store} repository}
 
@@ -118,6 +135,40 @@ The file is untracked, meaning Git doesn't see it yet. If you tried to do a comm
 \newline
 \newline
 \centerline{\texttt{git add code.txt}}
+\newline
+\newline
+Now run \texttt{git status} again to see the tracking:
+\newline
+\newline
+\texttt{
+On branch master
+\\
+\\
+No commits yet
+\\
+\\
+Changes to be committed:
+\\
+\hspace*{10mm}(use "git rm --cached <file>..." to unstage)
+\\
+\\
+\hspace*{20mm}new file:   code.txt
+}
+\newline
+\newline
+Now commit these changes by running \texttt{git commit -m "This is my first commit!"}. You can run \texttt{git log"} after to see the commit ID. It should look something similar to this:
+\newline
+\newline
+\texttt{
+commit b973b70df3ffcfd8dbe0284c76e0d3bd7c30f3b6 (HEAD -> master)
+\\
+Author: anthonymcglone2022 <anthonymcglone2022@gmail.com>
+\\
+Date:   Wed May 11 20:14:36 2022 +0100
+\\
+\\
+\hspace*{10mm}This is my first commit
+}
 \newline
 \newline
 
