@@ -177,13 +177,13 @@ GitHub is a website that offers free hosting of remote Git repositories. In orde
 
 - Signup to GitHub: \href{https://github.com/signup}{here} 
 
-- Generate an SSH key: \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}{Procedure here}
+- Generate an SSH key: \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}{Procedure here (select one of Mac, Linux, Windows)}
 
-- Adding that SSH key into GitHub: \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account}{Procedure here}
+- Adding that SSH key into GitHub: \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account}{Procedure}
 
 - Create a repository (name it \texttt{store} and skip the README initilization step.
 \newline
-\hspace*{9mm}Stop at the create instruction): \href{https://docs.github.com/en/get-started/quickstart/create-a-repo}{Procedure here}
+\hspace*{9mm}Stop after Create repository step): \href{https://docs.github.com/en/get-started/quickstart/create-a-repo}{Procedure}
 \newline
 \newline
 Let's push the commit we made to the remote repository. First, we will point our local repo to the remote repo. Take your GitHub user name and replace \texttt{username} in the following command - then run it.
@@ -192,7 +192,14 @@ Let's push the commit we made to the remote repository. First, we will point our
 \centerline{\texttt{git remote add origin git@github.com:username/store.git}}
 \newline
 \newline
-To see if the repository was updated, run \texttt{git remote -v}
+To see if the repository was updated, run \texttt{git remote -v} in your terminal. Now push your code to the remote repository (i.e. your remote master branch). Run the following:
+\newline
+\newline
+\centerline{\texttt{git push origin master}}
+\newline
+\newline
+Open up your \texttt{store} repo in GitHub. If your command was successful then you should see the \texttt{code.txt} file inside it.
+
 
 
 
