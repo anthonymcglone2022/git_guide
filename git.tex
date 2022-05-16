@@ -167,7 +167,7 @@ Author: anthonymcglone2022 <anthonymcglone2022@gmail.com>
 Date:   Wed May 11 20:14:36 2022 +0100
 \\
 \\
-\hspace*{10mm}This is my first commit
+\hspace*{10mm}This is my first commit!
 }
 \newline
 \newline
@@ -200,6 +200,58 @@ To see if the repository was updated, run \texttt{git remote -v} in your termina
 \newline
 Open up your \texttt{store} repo in GitHub. If your command was successful then you should see the \texttt{code.txt} file inside it.
 
+\section{Understanding Branches}
+At this point, you have shared your work with others. Your local master branch is synched with the remote master branch. Your colleagues will clone your repository to their local machines using the \texttt{git clone} command. They will make changes, commit them to their local master branches and push them up to the repository that you just created. Git's strength is that it will track these changes. It also offers the tools to make sure that you don't overwrite anyone's work when you push up your own changes. We'll see how to do this now. Then we'll talk a little about branches. 
+\newline
+\newline
+Let's mimic a colleague by cloning your remote repository to a different folder on your machine. Make sure this folder is outside of your existing \texttt{store} directory. Create a folder called \texttt{colleaguesrepository} and then navigate inside that folder using the terminal. Then run the following command (replacing \texttt{username} with your GitHub user name):
+\newline
+\newline
+\centerline{\texttt{git clone git@github.com:username/store.git}}
+\newline
+\newline
+When the command finishes, you should find another copy of the \texttt{store} directory downloaded. Create a file called \texttt{colleaguesfile.txt} in this new \texttt{store} directory. Then navigate inside the directory using the terminal. We will add, commit and push this file to our remote repo. Run the following: 
+\newline
+
+- \texttt{git add colleaguesfile.txt} 
+
+- \texttt{git commit -m "I am a new colleague committing some new code"} 
+
+- \texttt{git push origin master}
+\newline
+\newline
+Ok, so our colleague has committed their changes. We have our own work to finish, and we need to push it to remote. So let's do that now. Use your terminal to navigate back to your \textbf{initial} \texttt{store} repository. Create a file in there called \texttt{mysecondfile.txt}. Then run the add, commit, push sequence of commands:
+\newline
+
+- \texttt{git add mysecondfile.txt} 
+
+- \texttt{git commit -m "I am pushing up my work now"} 
+
+- \texttt{git push origin master}
+\newline
+\newline
+Now your push should be rejected. You will see a message like:
+\newline
+\newline
+\texttt{\small
+To github.com:username/store.git
+\\
+ ! [rejected]        master -> master (fetch first)
+\\
+error: failed to push some refs to 'git@github.com:username/store.git'
+\\
+hint: Updates were rejected because the remote contains work you dont
+\\
+hint: have locally. This is usually caused by another repository pushing
+\\
+hint: to the same ref. You may want to first integrate the remote changes
+\\
+hint: (e.g., 'git pull ...') before pushing again.
+\\
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+}
+\newline
+This occurred because your remote repository has been updated with your colleague's work. This is how Git is useful. It will stop you from overwriting another person's work. Another mistake we made here was to commit our changes directly to local master. This is where branching strategy becomes important. You should always create a local branch from your local master. Then if your colleagues push to remote while you are working on your changes, you can pull their changes down to your local master. That way it always stays in synch with the remote master branch. When you're ready to push your own changes up, you can "merge" your changes into your updated local master and push it to remote. Let's do that now. Firstly let's undo the commit we just made.
 
 
 
