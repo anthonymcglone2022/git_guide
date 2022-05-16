@@ -251,8 +251,16 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 }
 \newline
-This occurred because your remote repository has been updated with your colleague's work. This is how Git is useful. It will stop you from overwriting another person's work. Another mistake we made here was to commit our changes directly to local master. This is where branching strategy becomes important. You should always create a local branch from your local master. Then if your colleagues push to remote while you are working on your changes, you can pull their changes down to your local master. That way it always stays in synch with the remote master branch. When you're ready to push your own changes up, you can "merge" your changes into your updated local master and push it to remote. Let's do that now. Firstly let's undo the commit we just made.
-
+This occurred because your remote repository has been updated with your colleague's work. This is how Git is useful. It will stop you from overwriting another person's work. Another mistake we made here was to commit our changes directly to local master. This is where branching strategy becomes important. You should always create a local branch from your local master. Then if your colleagues push to remote while you are working on your changes, you can pull their changes down to your local master. That way it always stays in synch with the remote master branch. When you're ready to push your own changes up, you can "merge" your changes into your updated local master and push it to remote. Let's do that now. Firstly let's undo the commit we just made. Run:
+\newline
+\newline\centerline{\texttt{git reset --hard HEAD{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}1}}
+\newline
+\newline
+If you run \texttt{git log} now, you will see that your most recent commit has been wiped from the Git version history. The file 
+\texttt{mysecondfile.txt} is also gone. This is what a hard reset does. A soft reset \texttt{git reset --soft HEAD{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}1} would undo the latest commit but keep the files associated with that commit (it will take you back in time to the point just before you made your last commit). We'll see some "poweruser" commands later.
+\newline
+\newline
+Let's get the latest changes from remote master first. Then we can branch off and start working on our own changes. Run: \texttt{git pull}
 
 
 
