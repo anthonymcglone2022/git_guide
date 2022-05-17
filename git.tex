@@ -257,12 +257,52 @@ This occurred because your remote repository has been updated with your colleagu
 \newline
 \newline
 If you run \texttt{git log} now, you will see that your most recent commit has been wiped from the Git version history. The file 
-\texttt{mysecondfile.txt} is also gone. This is what a hard reset does. A soft reset \texttt{git reset --soft HEAD{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}1} would undo the latest commit but keep the files associated with that commit (it will take you back in time to the point just before you made your last commit). We'll see some "poweruser" commands later.
+\texttt{mysecondfile.txt} is also gone. This is what a hard reset does. A soft reset \texttt{git reset --soft HEAD{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}1} would undo the latest commit but keep the files associated with that commit (it will take you back in time to the point just before you made your last commit). We'll explore these poweruser commands in more detail later.
 \newline
 \newline
-Let's get the latest changes from remote master first. Then we can branch off and start working on our own changes. Run: \texttt{git pull}
+Let's create a new branch (we'll call it \texttt{first}) to make our changes on:
+\newline
+\newline\centerline{\texttt{git checkout -b first}}
+\newline
+\newline
+If you run \texttt{git status} now you will see the output \texttt{On branch first}. If you run \texttt{git log} to see your commit history, you will see that you only have one commit. Your branch \texttt{first} is an exact copy of local master. You can switch between branches by running \texttt{git checkout branchname} replacing \texttt{branchname} with the name of the branch you want to switch to. As an excerise, switch now to \texttt{master} and examine your commit history, then switch back to the \texttt{first} branch. 
+\newline
+\newline
+Now, let's commit some changes on the \texttt{first} branch. Afterwards, we will try to merge our changes to local master. Start by creating a file in the \texttt{store} repo called \texttt{mysecondfile.txt}. Then run the add and commit commands:
+\newline
 
+- \texttt{git add mysecondfile.txt} 
 
+- \texttt{git commit -m "My first commit on a branch"} 
+\newline
+\newline
+Run \texttt{git log} to check the commit was successful. Now let's push our changes to remote. The following is an overview of that flow:
+\newline
+
+- \texttt{Switch back to local master}
+
+- \texttt{Get our colleagues changes from remote master}
+
+- \texttt{Merge our changes into updated local master (2 commands)} 
+
+- \texttt{Push our changes to remote master}
+\newline
+\newline
+Here is the command flow:
+\newline
+
+- \texttt{git checkout master}
+
+- \texttt{git pull origin master}
+
+- \texttt{git merge --squash first} 
+
+- \texttt{git commit -m "Commiting branch changes"}
+
+- \texttt{git push origin master}
+\newline
+\newline
+If you check your GitHub repository now, you should see the file that you added in the remote repo. Now let's unpack what happened with the above commands. 
 
 
 
