@@ -327,7 +327,70 @@ Open up the \texttt{mysecondfile.txt} and add the text \texttt{This is my collea
 - \texttt{git push origin master}
 \newline
 \newline
+Now navigate back to your \textbf{original} \texttt{store} folder using the terminal. Let's create another branch called \texttt{second}. Run:
+\newline
+\newline\centerline{\texttt{git checkout -b second}}
+\newline
+\newline 
+Open the file \texttt{mysecondfile.txt} and add the text \texttt{I have added some text here} on line 1. Then run the following commands to do the merge:
+\newline
 
+- \texttt{git checkout master}
+
+- \texttt{git pull origin master}
+
+- \texttt{git merge --squash second} 
+\newline
+\newline
+You should see the following text:
+\newline
+\newline
+\texttt{\small
+Auto-merging mysecondfile.txt
+\\
+CONFLICT (content): Merge conflict in mysecondfile.txt
+\\
+Squash commit -- not updating HEAD
+\\
+Automatic merge failed; fix conflicts and then commit the result.
+}
+\newline
+\newline
+We need to fix the conflict that has arised. Here's what our text file \texttt{mysecondfile.txt} looks like now (PTO):
+\newline
+\newline
+\newline
+\newline
+\newline
+\texttt{\small
+<<<<<<< HEAD
+\\
+This is my colleagues edit
+\\
+=======
+\\
+I added a line here
+\\
+>>>>>>> second
+}
+\newline
+\newline
+The text between \texttt{HEAD} and \texttt{=======} is what is in the remote repo - what your colleague pushed up. The text below the \texttt{=======} is what is on your branch \texttt{second}. Since you and your colleague have been working on the same area of the same file, Git does not automatically know which edits to keep. In this case it's quite easy to decide what to keep - we want to save both. However, sometimes, it may not be immediately apparent what you need to keep (like in the case that your colleague is refactoring code, but you're working on that same code during the refactoring). When this happens, you have to sit down with your colleague and see what needs to be kept. 
+\newline
+\newline
+Now that we have figured out that we want to keep both lines of text, let's edit our file and resolve the conflicts with \texttt{git}. Open \texttt{mysecondfile.txt} and remove everything except the two sentences. Then save the file. On the command line, run the add command to resolve the conflict fully:
+\newline
+\newline\centerline{\texttt{git add mysecondfile.txt}}
+\newline
+\newline
+Then run the usual flow to push up your changes:
+\newline
+
+- \texttt{git commit -m "Resolved some conflicts from my branch second"} 
+
+- \texttt{git push origin master}
+\newline
+\newline
 
 
 \end{document}
