@@ -302,9 +302,31 @@ Here is the command flow:
 - \texttt{git push origin master}
 \newline
 \newline
-If you check your GitHub repository now, you should see the file that you added in the remote repo. Now let's unpack what happened with the above commands. 
+If you check your GitHub repository now, you should see that \texttt{mysecondfile.txt} is added to it. Now let's unpack what happened with the above commands.
+\newline
+\newline
+The command \texttt{git pull origin master} was used to pull the remote changes down to our local master branch. You must be on the master branch to do this. You should always pull down the remote changes before you merge your work to local master. This ensures your master branches are always synched. 
+\newline
+\newline
+Always switch to the branch you want to merge your changes into. We wanted to merge our work (i.e. the \texttt{first} branch) into master, so we ran our merge command while being on master. The \texttt{--squash} argument squashes multiple commits into one commit. That is why we had to run a second commit on the local master branch. It's good practice to squash your commits into one, because it makes it easier to read the commit version history when you run \texttt{git log}. You always give the name of the branch that has to be merged at the end of the command.
 
+\section{Merge Conflicts}
+In the last section, we had a merge that was straightforward. However, this does not happen often in the real world of big projects and multiple engineers. A colleague of yours might be working on the same files as you at any given time, and may even be working on the same lines of text or code within those files. This can lead to Git throwing up a "merge conflict". You will have to resolve these conflicts before you can push your work to remote. We'll see see how this happens in this section, and you will learn how to fix it. 
+\newline
+\newline
+Let's pretend to be our colleague again. Navigate back to your colleagues \texttt{store} folder. Then pull the latest changes down to the master branch. Run \texttt{git log} afterward to make sure your colleague has got the changes you pushed up a few moments ago. We'll not create a branch this time (for brevity) but you can assume that your colleague would have branched off and gone through the merge process.
+\newline
+\newline
+Open up the \texttt{mysecondfile.txt} and add the text \texttt{This is my colleagues edit} on line 1. Make sure you only add the text to the first line. When you are happy with the changes, run the add, commit, push flow as usual:
+\newline
 
+- \texttt{git add mysecondfile.txt} 
+
+- \texttt{git commit -m "My colleague is making another commit"} 
+
+- \texttt{git push origin master}
+\newline
+\newline
 
 
 
