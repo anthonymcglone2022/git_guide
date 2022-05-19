@@ -200,7 +200,7 @@ To see if the repository was updated, run \texttt{git remote -v} in your termina
 \newline
 Open up your \texttt{store} repo in GitHub. If your command was successful then you should see the \texttt{code.txt} file inside it.
 
-\section{Understanding Branches}
+\section{Basic Branching and Merging}
 At this point, you have shared your work with others. Your local master branch is synched with the remote master branch. Your colleagues will clone your repository to their local machines using the \texttt{git clone} command. They will make changes, commit them to their local master branches and push them up to the repository that you just created. Git's strength is that it will track these changes. It also offers the tools to make sure that you don't overwrite anyone's work when you push up your own changes. We'll see how to do this now. Then we'll talk a little about branches. 
 \newline
 \newline
@@ -311,13 +311,13 @@ The command \texttt{git pull origin master} was used to pull the remote changes 
 Always switch to the branch you want to merge your changes into. We wanted to merge our work (i.e. the \texttt{first} branch) into master, so we ran our merge command while being on master. The \texttt{--squash} argument squashes multiple commits into one commit. That is why we had to run a second commit on the local master branch. It's good practice to squash your commits into one, because it makes it easier to read the commit version history when you run \texttt{git log}. You always give the name of the branch that has to be merged at the end of the command.
 
 \section{Merge Conflicts}
-In the last section, we had a merge that was straightforward. However, this does not happen often in the real world of big projects and multiple engineers. A colleague of yours might be working on the same files as you at any given time, and may even be working on the same lines of text or code within those files. This can lead to Git throwing up a "merge conflict". You will have to resolve these conflicts before you can push your work to remote. We'll see see how this happens in this section, and you will learn how to fix it. 
+In the last section, we had a merge that was straightforward. However, this does not happen often in the real world of big projects and multiple engineers. A colleague of yours might be working on the same files as you at any given moment, and may even be working on the same lines of text or code within those files. This can lead to Git throwing up a "merge conflict". You will have to resolve these conflicts before you can push your work to remote. We'll see see how this happens in this section, and you will learn how to fix it. 
 \newline
 \newline
-Let's pretend to be our colleague again. Navigate back to your colleagues \texttt{store} folder. Then pull the latest changes down to the master branch. Run \texttt{git log} afterward to make sure your colleague has got the changes you pushed up a few moments ago. We'll not create a branch this time (for brevity) but you can assume that your colleague would have branched off and gone through the merge process.
+We're going to pretend that our Boss has asked us to add our suggestions for improving team efficiency to \texttt{mysecondfile.txt}. Our Boss wants all the team's suggestions, because it's useful for an open discussion later. So let's pretend to be our colleague again. Navigate back to your colleagues \texttt{store} folder. Then pull the latest changes down to the master branch. Run \texttt{git log} afterward to make sure your colleague has got the changes you pushed up a few moments ago. We'll not create a branch this time (for brevity) but you can assume that your colleague would have branched off and gone through the merge process.
 \newline
 \newline
-Open up the \texttt{mysecondfile.txt} and add the text \texttt{This is my colleagues edit} on line 1. Make sure you only add the text to the first line. When you are happy with the changes, run the add, commit, push flow as usual:
+Open up the \texttt{mysecondfile.txt} and add the text \texttt{Have less meetings} on \textbf{line 1}. Make sure you only add the text to the first line. When you are happy with the changes, run the add, commit, push flow as usual:
 \newline
 
 - \texttt{git add mysecondfile.txt} 
@@ -332,7 +332,7 @@ Now navigate back to your \textbf{original} \texttt{store} folder using the term
 \newline\centerline{\texttt{git checkout -b second}}
 \newline
 \newline 
-Open the file \texttt{mysecondfile.txt} and add the text \texttt{I have added some text here} on line 1. Then run the following commands to do the merge:
+Open the file \texttt{mysecondfile.txt} and add the text \texttt{Do more off site team building} on \textbf{line 1}. Then run the following commands to do the merge:
 \newline
 
 - \texttt{git checkout master}
@@ -365,20 +365,20 @@ We need to fix the conflict that has arised. Here's what our text file \texttt{m
 \texttt{\small
 <<<<<<< HEAD
 \\
-This is my colleagues edit
+Have less meetings
 \\
 =======
 \\
-I added a line here
+Do more off site team building
 \\
 >>>>>>> second
 }
 \newline
 \newline
-The text between \texttt{HEAD} and \texttt{=======} is what is in the remote repo - what your colleague pushed up. The text below the \texttt{=======} is what is on your branch \texttt{second}. Since you and your colleague have been working on the same area of the same file, Git does not automatically know which edits to keep. In this case it's quite easy to decide what to keep - we want to save both. However, sometimes, it may not be immediately apparent what you need to keep (like in the case that your colleague is refactoring code, but you're working on that same code during the refactoring). When this happens, you have to sit down with your colleague and see what needs to be kept. 
+The text between \texttt{HEAD} and \texttt{=======} is what is in the remote repo - what your colleague pushed up. The text below the \texttt{=======} is what is on your branch \texttt{second}. Since you and your colleague have been working on the same area of the same file, Git does not automatically know which edits to keep. In this case it's quite easy to decide what to keep - we want to save both. However, sometimes, it may not be immediately apparent what you need to keep (like in the case that your colleague is refactoring code, but you're working on that same code during the refactor). When this happens, you have to sit down with your colleague and see what needs to be kept. 
 \newline
 \newline
-Now that we have figured out that we want to keep both lines of text, let's edit our file and resolve the conflicts with \texttt{git}. Open \texttt{mysecondfile.txt} and remove everything except the two sentences. Then save the file. On the command line, run the add command to resolve the conflict fully:
+Ok, back to our current merge. We know that we want to keep both lines of text, so let's edit our file and resolve the conflicts with \texttt{git}. Open \texttt{mysecondfile.txt} and remove everything except the two sentences. Then save the file. On the command line, run the add command to resolve the conflict fully:
 \newline
 \newline\centerline{\texttt{git add mysecondfile.txt}}
 \newline
@@ -391,6 +391,30 @@ Then run the usual flow to push up your changes:
 - \texttt{git push origin master}
 \newline
 \newline
+
+\section{Rebasing a branch}
+In section Basic Branching and Merging, we saw a rather straight-forward merge. In the section Merge Conflicts, we saw how the merging process can become rather complicated. However, there are a number strategies to keep merging easy, especially when your working on a local branch for hours or days at a time. If you keep your local branch up to date while you're working on it, merging to master can be quite a painless process. In this section, we will see a process called rebasing, which will allow us to do just that.
+\newline
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
