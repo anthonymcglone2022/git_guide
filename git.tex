@@ -395,6 +395,18 @@ Then run the usual flow to push up your changes:
 \section{Rebasing a branch}
 In section Basic Branching and Merging, we saw a rather straight-forward merge. In the section Merge Conflicts, we saw how the merging process can become rather complicated. However, there are a number strategies to keep merging easy, especially when your working on a local branch for hours or days at a time. If you keep your local branch up to date while you're working on it, merging to master can be quite a painless process. In this section, we will see a process called rebasing, which will allow us to do just that.
 \newline
+\newline
+Create a new branch (called \texttt{testrebase}) in your own \texttt{store} repo. Create a new file called \texttt{rebase.txt}, run the add and commit commands only. Run \texttt{git log} and examine the version history (take note of your most recent commit). 
+\newline
+\newline
+Switch over to your colleagues \texttt{store} repo. Pull down the latest changes to local master. Again, we will not branch off. Create a file \texttt{anewfile.txt}, add it, commit it and push it to remote. Repeat this process with another file called \texttt{anotherfile.txt}. When you are done, you can check your version history to see the commits (remember this for when we do the rebase).
+\newline
+\newline
+Okay, we are ready to do the rebase. Switch back to your own repo. Switch to the master branch and pull down the latest changes. Check the version history and compare them with the version history of your colleagues \texttt{store}. When you're ready, switch to your \texttt{testrebase} branch. Run the following command to rebase.
+\newline
+\newline\centerline{\texttt{git rebase master}}
+\newline
+\newline  
 
 
 
