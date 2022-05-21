@@ -407,7 +407,49 @@ Okay, we are ready to do the rebase. Switch back to your own repo. Switch to the
 \newline\centerline{\texttt{git rebase master}}
 \newline
 \newline  
-What did you see?
+You should see the following message in your terminal
+\newline
+\newline
+\texttt{\small
+First, rewinding head to replay your work on top of it...
+\\
+Applying: rebase file
+\\
+}
+\newline
+Now if you run \texttt{git log} on your branch, you should see that your commit is at the top of the version history, with your colleague's commits underneath it. This is what a rebase does, it re-bases the changes on your branch against another branch (master in this case). That way, you can keep up to date while you are working on your changes.
+
+\section{Stashing your changes}
+During development of a new feature, you may be asked to fix a software defect. You may have just started work on the feature, and you have some changes, but you're not ready to commit them yet. You have to create a new branch and switch to it but you don't want to lose your work. This is where the \texttt{git stash} command comes in. We'll see an example of how to do this now.
+\newline
+\newline
+Create a new branch called \texttt{stashexample}. Create a new file called \texttt{filetostash.txt}. Now run:
+\newline
+\newline\centerline{\texttt{git stash list}}
+\newline
+\newline
+There should be no output in your terminal screen. That is because there is nothing in your stash. Run the following commands:
+\newline
+
+- \texttt{git add filetostash.txt}
+
+- \texttt{git stash}
+\newline
+\newline
+If you run \texttt{git stash list} now, you should see the following:
+\newline
+\newline
+\texttt{\small
+stash@\{0\}: WIP on stashexample: <last commit> <commit message>
+\\
+}
+\newline
+If you run \texttt{git status} now, you should see \texttt{nothing to commit} in your terminal. So at this point, you're free to move away to create another branch. But we'll stay on this branch - we can assume that we've fixed the software defect and now we have come back to continue our work. We want to get our changes out of stash. You can do this via running the \texttt{apply} command. You have to give it the id of the entry in the stash list (in our case, we only have one: \texttt{stash@\{0\}}). To retrieve the changes, run:
+\newline
+\newline\centerline{\texttt{git stash apply stash@\{0\}}}
+\newline
+\newline
+If you run \texttt{git status} now, you should see \texttt{filetostash.txt} is being tracked again. 
 
 
 
@@ -417,6 +459,13 @@ What did you see?
 
 
 
+\chapter{Advanced Git}
+
+With the material you covered in Chapter 2, you now have enough knowledge to a) use Git in the workplace and b) explore the wider Git ecosystem. In this Chapter, we'll cover the topics that will set you up to be a poweruser.  
+
+\section{Submodules}
+\section{When do you rebase and when do you merge}
+\section{Cherrypicking}
 
 
 
