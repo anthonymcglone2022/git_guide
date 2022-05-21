@@ -4,7 +4,7 @@
 \usepackage{lipsum}
 \usepackage{times}
 \usepackage{listings}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
 \makeatletter
 \renewcommand{\@makechapterhead}[1]{%
@@ -13,6 +13,15 @@
   \vspace{\baselineskip}% ...just a little space
 }
 \makeatother
+
+
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+
+\newcommand{\changeurlcolor}[1]{\hypersetup{urlcolor=#1}}  
 
 
 \setcounter{secnumdepth}{3}
@@ -53,7 +62,7 @@ In this guide you will see how the command line tool \texttt{git} is used to man
 
 \subsection{Windows}
 
-1. Install Git by downloading the Windows binary from git-scm (\href{https://git-scm.com/}{here})
+1. Install Git by downloading the Windows binary from git-scm (\href{https://git-scm.com/downloads}{here})
 \newline
 2. Run the installer
 \newline
@@ -77,7 +86,10 @@ In this guide you will see how the command line tool \texttt{git} is used to man
 
 \chapter{Basic Git}
 \section{Setting up a local repository}
-First create a folder called \texttt{store}. Then open a terminal and navigate into that folder. Run this command:
+First create a folder called \texttt{store}. If you're on MacOS or Linux, create it under the \texttt{/home/} folder, so your \texttt{path} to the folder will be \texttt{/home/store}. If you're on Windows create it under the \texttt{C} folder (when you're navigating to it the \texttt{path} will be \texttt{/c/store}). Now, open a terminal and navigate into that folder using the \texttt{cd} command (i.e. \texttt{cd /c/store}). 
+\newline
+\newline
+Now, run this command:
 \newline
 \newline
 \centerline{\texttt{git init}}
