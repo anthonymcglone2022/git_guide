@@ -122,7 +122,6 @@ Run the following command to verify that your local repository was set up:
 You should see the following text in your terminal:
 \newline
 \newline
-\newline
 \texttt{
 On branch master
 \\
@@ -176,7 +175,7 @@ Changes to be committed:
 }
 \newline
 \newline
-Now commit these changes by running \texttt{git commit -m "This is my first commit!"} You can run \texttt{git log} after to see the commit ID. It should look something similar to this:
+Now commit these changes by running \texttt{git commit -m "This is my first commit!"} You can run \texttt{git log} after to see the commit ID. The ID is the code after the word \texttt{commit}:
 \newline
 \newline
 \texttt{
@@ -190,7 +189,7 @@ Date:   Wed May 11 20:14:36 2022 +0100
 \hspace*{10mm}This is my first commit!
 }
 \section{Creating a remote repository}
-GitHub is a website that offers free hosting of remote Git repositories. In order to create a repository there, there are a few steps that have to be completed. 
+The next step to take is to create a remote repository, where you can upload your changes. GitHub is a website that offers free hosting of remote Git repositories. In order to create a repository there, there are a few steps that have to be completed. 
 \newline
 
 - Signup to GitHub: \href{https://github.com/signup}{here} 
@@ -210,7 +209,7 @@ Let's push the commit we made to the remote repository. First, we will point our
 \centerline{\texttt{git remote add origin git@github.com:username/store.git}}
 \newline
 \newline
-To see if the repository was updated, run \texttt{git remote -v} in your terminal. Now push your code to the remote repository (i.e. your remote master branch). Run the following:
+To see if your local repository was updated, run \texttt{git remote -v} in your terminal. You should see \texttt{git@github.com:username/store.git}. Now, push your code to the remote repository (i.e. your remote master branch). Run the following:
 \newline
 \newline
 \centerline{\texttt{git push origin master}}
@@ -269,13 +268,13 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 }
 \newline
-This occurred because your remote repository has been updated with your colleague's work. This is how Git is useful. It will stop you from overwriting another person's work. Another mistake we made here was to commit our changes directly to local master. This is where branching strategy becomes important. You should always create a local branch from your local master. Then if your colleagues push to remote while you are working on your changes, you can pull their changes down to your local master. That way it always stays in synch with the remote master branch. When you're ready to push your own changes up, you can "merge" your changes into your updated local master and push it to remote. Let's do that now. Firstly let's undo the commit we just made. Run:
+This occurred because your remote repository has been updated with your colleague's work. This is how Git is useful. It will stop you from overwriting another person's work. Another mistake we made here was to commit our changes directly to local master. This is where branching strategy becomes important. You should always create a local branch from your local master. Then if your colleagues push to remote while you are working on your changes, you can pull their changes down to your local master. That way it always stays in synch with the remote master branch. When you're ready to push your own changes up, you can ``merge" your changes into your updated local master and push it to remote. Let's do that now. Firstly let's undo the commit we just made. Run:
 \newline
 \newline\centerline{\texttt{git reset --hard HEAD{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}1}}
 \newline
 \newline
 If you run \texttt{git log} now, you will see that your most recent commit has been wiped from the Git version history. The file 
-\texttt{mysecondfile.txt} is also gone. This is what a hard reset does. A soft reset \texttt{git reset --soft HEAD{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}1} would undo the latest commit but keep the files associated with that commit (it will take you back in time to the point just before you made your last commit). We'll explore these poweruser commands in more detail later.
+\texttt{mysecondfile.txt} is also gone. This is what a hard reset does. A soft reset \texttt{git reset --soft HEAD{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}1} would undo the latest commit but keep the files associated with that commit (it will take you back in time to the point just before you made your last commit). We'll explore poweruser commands like these in more detail later.
 \newline
 \newline
 Let's create a new branch (we'll call it \texttt{first}) to make our changes on:
@@ -294,7 +293,7 @@ Now, let's commit some changes on the \texttt{first} branch. Afterwards, we will
 - \texttt{git commit -m "My first commit on a branch"} 
 \newline
 \newline
-Run \texttt{git log} to check the commit was successful. Now let's push our changes to remote. The following is an overview of that flow:
+Run \texttt{git log} to check the commit was successful. Now let's push our changes to remote. The following gives an overview for the commands below it:
 \newline
 
 - \texttt{Switch back to local master}
@@ -326,16 +325,16 @@ If you check your GitHub repository now, you should see that \texttt{mysecondfil
 The command \texttt{git pull origin master} was used to pull the remote changes down to our local master branch. You must be on the master branch to do this. You should always pull down the remote changes before you merge your work to local master. This ensures your master branches are always synched. 
 \newline
 \newline
-Always switch to the branch you want to merge your changes into. We wanted to merge our work (i.e. the \texttt{first} branch) into master, so we ran our merge command while being on master. The \texttt{--squash} argument squashes multiple commits into one commit. That is why we had to run a second commit on the local master branch. It's good practice to squash your commits into one, because it makes it easier to read the commit version history when you run \texttt{git log}. You always give the name of the branch that has to be merged at the end of the command.
+Always switch to the branch you want to merge your changes into. We wanted to merge our work (i.e. the \texttt{first} branch) into master, so we ran our merge command while being on master. The \texttt{--squash} argument squashes multiple commits into one commit. That is why we had to run a second commit on the local master branch. It's good practice to squash your commits into one, because it makes it easier to read the commit version history when you run \texttt{git log}. Finally, you always give the name of the branch that has to be merged at the end of the command.
 
 \section{Merge Conflicts}
-In the last section, we had a merge that was straightforward. However, this does not happen often in the real world of big projects and multiple engineers. A colleague of yours might be working on the same files as you at any given moment, and may even be working on the same lines of text or code within those files. This can lead to Git throwing up a "merge conflict". You will have to resolve these conflicts before you can push your work to remote. We'll see see how this happens in this section, and you will learn how to fix it. 
+In the last section, we had a merge that was straightforward. However, this does not happen often in the real world of big projects and multiple engineers. A colleague of yours might be working on the same files as you at any given moment, and may even be working on the same lines of text or code within those files. This can lead to Git throwing up a ``merge conflict". You will have to resolve these conflicts before you can push your work to remote. We'll see see how this happens in this section, and you will learn how to fix it. 
 \newline
 \newline
 We're going to pretend that our Boss has asked us to add our suggestions for improving team efficiency to \texttt{mysecondfile.txt}. Our Boss wants all the team's suggestions, because it's useful for an open discussion later. So let's pretend to be our colleague again. Navigate back to your colleagues \texttt{store} folder. Then pull the latest changes down to the master branch. Run \texttt{git log} afterward to make sure your colleague has got the changes you pushed up a few moments ago. We'll not create a branch this time (for brevity) but you can assume that your colleague would have branched off and gone through the merge process.
 \newline
 \newline
-Open up the \texttt{mysecondfile.txt} and add the text \texttt{Have less meetings} on \textbf{line 1}. Make sure you only add the text to the first line. When you are happy with the changes, run the add, commit, push flow as usual:
+Open up the \texttt{mysecondfile.txt} and add the text \texttt{Have less meetings} on \textbf{line 1}. Make sure you only add the text to the first line. Save the file. When you are happy with the changes, run the add, commit, push flow as usual:
 \newline
 
 - \texttt{git add mysecondfile.txt} 
@@ -350,7 +349,7 @@ Now navigate back to your \textbf{original} \texttt{store} folder using the term
 \newline\centerline{\texttt{git checkout -b second}}
 \newline
 \newline 
-Open the file \texttt{mysecondfile.txt} and add the text \texttt{Do more off site team building} on \textbf{line 1}. Then run the following commands to do the merge:
+Open the file \texttt{mysecondfile.txt} and add the text \texttt{Do more off site team building} on \textbf{line 1}. Save the file, then run the following commands to do the merge:
 \newline
 
 - \texttt{git checkout master}
@@ -374,7 +373,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 }
 \newline
 \newline
-We need to fix the conflict that has arised. Here's what our text file \texttt{mysecondfile.txt} looks like now:
+We need to fix the conflict that has arisen. Here's what our text file \texttt{mysecondfile.txt} looks like now:
 \newline
 \newline
 \texttt{\small
@@ -414,7 +413,7 @@ Create a new branch (called \texttt{testrebase}) in your own \texttt{store} repo
 Switch over to your colleagues \texttt{store} repo. Pull down the latest changes to local master. Again, we will not branch off. Create a file \texttt{anewfile.txt}, add it, commit it and push it to remote. Repeat this process with another file called \texttt{anotherfile.txt}. When you are done, you can check your version history to see the commits (remember this for when we do the rebase).
 \newline
 \newline
-Okay, we are ready to do the rebase. Switch back to your own repo. Switch to the master branch and pull down the latest changes. Check the version history and compare them with the version history of your colleagues \texttt{store}. When you're ready, switch to your \texttt{testrebase} branch. Run the following command to rebase.
+Okay, we are ready to do the rebase. Navigate back to your own repo. Switch to the master branch and pull down the latest changes. Check the version history and compare them with the version history of your colleagues \texttt{store}. When you're ready, switch to your \texttt{testrebase} branch. Run the following command to rebase.
 \newline
 \newline\centerline{\texttt{git rebase master}}
 \newline
